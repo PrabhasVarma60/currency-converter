@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+ 
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Currency Converter</title>
+  <link rel="stylesheet" href="styles.css">
+  
+</head>
+<body>
+    <div style="background-color: #212529; height:50px; display:flex; align-items: center;">
+        <a href="index.html" style="color:white; font-size: 20px; margin-left:20px;text-decoration:none">Currency Converter</a>
+        <a  href="history.html"  style="color:white; font-size: 20px; margin-left:30px; text-decoration:none">History</a>
+    </div>
+   <div class="d-flex justify-content-center mt-5">
+        <div class="card shadow-lg rounded-3 p-4" style="width: 700px;">
+            <h2 class="text-center text-dark fw-bold ">Currency Converter</h2>
+            <p class="text-dark mb-2 ms-1 ">From</p>
+            <select class="form-select mb-3" id="from">
+                <option selected>Select</option>
+                <option value="INR">INR</option>
+                <option value="USD">USD</option>
+                <option value="EUR">EUR</option>
+            </select>
+            <p class="text-dark mb-2 ms-1">Amount</p>
+            <input type="number" id="amount"class="form-control mb-2" placeholder="Enter amount" id="from">
+            <p class="text-dark mb-1 ms-1">To</p>
+            <select class="form-select mb-3" id="to">
+              <option selected>Select</option>
+              <option value="INR">INR</option>
+              <option value="USD">USD</option>
+              <option value="EUR">EUR</option>
+            </select>
+            <button onclick="temp()"  class="btn btn-dark btn-primary">Convert</button>
+            <p class="text-center mt-3  fw-bold" style="font-size: 20px;" id="output"></p>
+
+        
+        </div>
+ 
+        
+   </div> 
+  <script src="script.js"></script>
+</body> 
+</html>
