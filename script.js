@@ -36,15 +36,26 @@ function showHistory() {
 
     storedHistory = storedHistory.reverse();
     let html = "";
-    for (let i of storedHistory) {
+    for (let i=0;i<storedHistory.length;i++) {
+      let prevhis=null;
+      for(let j=i+1;j<storedHistory.length;j++)
+      {
+        if(storedHistory[j].userfrom==storedHistory[i].userfrom && storedHistory[j].userto==storedHistory[i].userto && storedHistory[j].fromamt==storedHistory[i].fromamt)
+        {
+          prevhis=storedHistory[j].toamt;
+        }
+      }
+      let gain = prevhis === null ? 0 : storedHistory[i].toamt - prevhis;
+      let gainText = `(${gain >= 0 ? "+" : ""}${gain.toFixed(2)})`;
+      
         html += `
           <div class="card mb-2 shadow-sm">
             <div class="card-body d-flex justify-content-between align-items-center">
               <div>
-                <h6 class="mb-1">${i.fromamt} ${i.userfrom} → ${i.toamt} ${i.userto}</h6>
-                <small class="text-muted">${i.date}</small>
+                <h6 class="mb-1">${storedHistory[i].fromamt} ${storedHistory[i].userfrom} → ${storedHistory[i].toamt} ${storedHistory[i].userto} ${gainText}</h6>
+                <small class="text-muted">${storedHistory[i].date} </small>
               </div>
-              <span class="badge bg-dark">${i.userto}</span>
+              <span class="badge bg-dark">${storedHistory[i].userto}</span>
             </div>
           </div>
         `;
