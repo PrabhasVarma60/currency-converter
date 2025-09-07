@@ -4,6 +4,7 @@ async function temp() {
     let conv = await fetch(`https://api.fxratesapi.com/latest?symbols=${to}&base=${from}`);
     let ans = await conv.json();
     let amt = document.getElementById("amount").value;
+    let temp=ans.rates[to];
 
     if (amt === "") {
         alert("Enter amount");
@@ -11,6 +12,7 @@ async function temp() {
         let convAmt = parseFloat(amt);
         let output = Number((convAmt * ans.rates[to]).toFixed(2));
         let history = {
+            oneamt:temp,
             userfrom: from,
             userto: to,
             fromamt: convAmt,
@@ -40,13 +42,19 @@ function showHistory() {
       let prevhis=null;
       for(let j=i+1;j<storedHistory.length;j++)
       {
-        if(storedHistory[j].userfrom==storedHistory[i].userfrom && storedHistory[j].userto==storedHistory[i].userto && storedHistory[j].fromamt==storedHistory[i].fromamt)
+        if(storedHistory[j].userfrom==storedHistory[i].userfrom && storedHistory[j].userto==storedHistory[i].userto )
         {
-          prevhis=storedHistory[j].toamt;
+          prevhis=storedHistory[j].oneamt;
         }
       }
-      let gain = prevhis === null ? 0 : storedHistory[i].toamt - prevhis;
-      let gainText = `(${gain >= 0 ? "+" : ""}${gain.toFixed(2)})`;
+      let gain = prevhis === null ? 0 : (storedHistory[i].oneamt - prevhis) * 100;
+
+
+          if (Math.abs(gain) < 0.005) {
+              gain = 0;
+            }
+
+      let gainText = `(${gain >= 0 ? "+" : ""}${gain.toFixed(2)}%)`;
       
         html += `
           <div class="card mb-2 shadow-sm">
