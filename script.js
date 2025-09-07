@@ -12,7 +12,7 @@ async function temp() {
         let convAmt = parseFloat(amt);
         let output = Number((convAmt * ans.rates[to]).toFixed(2));
         let history = {
-            oneamt:temp,
+            oneamt: Number(temp),   
             userfrom: from,
             userto: to,
             fromamt: convAmt,
@@ -47,7 +47,7 @@ function showHistory() {
           prevhis=storedHistory[j].oneamt;
         }
       }
-      let gain = prevhis === null ? 0 : (storedHistory[i].oneamt - prevhis) * 100;
+      let gain = prevhis === null ? 0 : (storedHistory[i].oneamt - prevhis)/prevhis * 100;
 
 
           if (Math.abs(gain) < 0.005) {
